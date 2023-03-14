@@ -28,7 +28,7 @@ function handleAxiosGet(userInput, page) {
       refs.photoCardContainer.innerHTML += createImageCardMarkup(data.hits);
       new SimpleLightbox('.gallery a').refresh();
       const totalPages = Math.ceil(data.totalHits / 40);
-      smoothScroll();
+      smoothScrollOnGalleryLoad();
       showLoadMoreBtn();
       if (data.totalHits === 0) {
         Notify.failure('Sorry, there are no images matching your search query. Please try again.');
@@ -190,10 +190,10 @@ function hideLoadMoreBtn() {
 function handleLoadMoreBtnClick() {
   page++;
   handleAxiosGet(searchHistory[searchHistory.length - 1], page);
-  smoothScroll();
+  smoothScrollOnGalleryLoad();
 };
 
-function smoothScroll() {
+function smoothScrollOnGalleryLoad() {
   const { height: cardHeight } = document
     .querySelector(".gallery")
     .firstElementChild.getBoundingClientRect();
@@ -204,7 +204,7 @@ function smoothScroll() {
   });
 };
 
-function scrollFunction() {
+function scrollToTop() {
   if (document.body.scrollTop > 2000 || document.documentElement.scrollTop > 2000) {
     refs.scrollToTopBtn.style.display = "block";
   } else {
@@ -217,7 +217,7 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
-window.onscroll = function () { scrollFunction() };
+window.onscroll = function () { scrollToTop() };
 createSearchHistoryMarkup();
 
 refs.scrollToTopBtn.addEventListener('click', topFunction);
