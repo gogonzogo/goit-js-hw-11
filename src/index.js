@@ -14,6 +14,7 @@ const refs = {
   searchHistoryContainer: document.querySelector('.search-history__container'),
   searchHistoryList: document.querySelector('.search-history__list'),
   clearHistoryBtn: document.querySelector('.clear-history__btn'),
+  goToTopBtn: document.querySelector('.go-to-top__btn'),
 };
 
 refs.searchBtn.disabled = true;
@@ -24,22 +25,17 @@ let page = 1;
 function handleAxiosGet(userInput, page) {
   getPixabayImages(userInput, page)
     .then(({ data }) => {
+      refs.photoCardContainer.innerHTML += createImageCardMarkup(data.hits);
+      simpleLightbox = new SimpleLightbox('.gallery a').refresh();
+      const totalPages = Math.ceil(data.totalHits / 40);
+      smoothScroll();
+      showLoadMoreBtn();
       if (data.totalHits === 0) {
         Notify.failure('Sorry, there are no images matching your search query. Please try again.');
       } else if (page === 1) {
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
-        refs.photoCardContainer.innerHTML += createImageCardMarkup(data.hits);
-        simpleLightbox = new SimpleLightbox('.gallery a').refresh();
-        smoothScroll();
-        showLoadMoreBtn();
-      } else {
-        refs.photoCardContainer.innerHTML += createImageCardMarkup(data.hits);
-        simpleLightbox = new SimpleLightbox('.gallery a').refresh();
-        smoothScroll();
-        showLoadMoreBtn();
-      }
+      };
   
-      const totalPages = Math.ceil(data.totalHits / 40);
       if (page === totalPages) {
         Notify.info(`We're sorry, but you've reached the end of search results.`);
         hideLoadMoreBtn();
@@ -203,10 +199,33 @@ function smoothScroll() {
     .firstElementChild.getBoundingClientRect();
 
   window.scrollBy({
-    top: 0,
+    top: 50,
     behavior: "smooth",
   });
 };
+
+
+window.onload = function () {
+  // Get the button
+  let mybutton = document.getElementById("myBtn");
+
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function () { scrollFunction() };
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+}
 
 createSearchHistoryMarkup();
 
