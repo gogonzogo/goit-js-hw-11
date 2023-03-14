@@ -26,7 +26,7 @@ function handleAxiosGet(userInput, page) {
   getPixabayImages(userInput, page)
     .then(({ data }) => {
       refs.photoCardContainer.innerHTML += createImageCardMarkup(data.hits);
-      simpleLightbox = new SimpleLightbox('.gallery a').refresh();
+      new SimpleLightbox('.gallery a').refresh();
       const totalPages = Math.ceil(data.totalHits / 40);
       smoothScroll();
       showLoadMoreBtn();
