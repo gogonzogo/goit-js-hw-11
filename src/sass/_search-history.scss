@@ -48,8 +48,9 @@
 
   .clear-history__btn {
     padding: 5px;
-    flex-shrink: 0;
     border-radius: 50px;
     cursor: pointer;
+    background-color: var(--accent-color);
+    color: var(--primary-text-color);
   }
 }

@@ -10,7 +10,6 @@ const refs = {
   searchBtn: document.querySelector('.search-form button'),
   gallery: document.querySelector('.gallery'),
   photoCardContainer: document.querySelector('.gallery__photo-card-container'),
-  loadMoreBtn: document.querySelector('.gallery button'),
   searchHistoryContainer: document.querySelector('.search-history__container'),
   searchHistoryList: document.querySelector('.search-history__list'),
   clearHistoryBtn: document.querySelector('.clear-history__btn'),
@@ -29,8 +28,7 @@ function handleAxiosGet(userInput, page) {
       refs.photoCardContainer.innerHTML += createImageCardMarkup(data.hits);
       newLightBox = new SimpleLightbox('.gallery a');
       const totalPages = Math.ceil(data.totalHits / 40);
-      smoothScrollOnGalleryLoad();
-      showLoadMoreBtn();
+      // smoothScrollOnGalleryLoad();
       if (data.totalHits === 0) {
         Notify.failure('Sorry, there are no images matching your search query. Please try again.');
       } else if (page === 1) {
@@ -39,7 +37,6 @@ function handleAxiosGet(userInput, page) {
 
       if (page === totalPages) {
         Notify.info(`We're sorry, but you've reached the end of search results.`);
-        hideLoadMoreBtn();
       };
     })
     .catch((error) => {
@@ -72,10 +69,8 @@ function clearSearchHistory(e) {
     refs.searchBtn.disabled = true;
     refs.photoCardContainer.innerHTML = '';
     searchHistory = [];
-    refs.searchHistoryContainer.classList.remove('is-visible');
-    refs.searchHistoryContainer.classList.add('is-hidden');
+    hideSearchHistory(e);
     createSearchHistoryMarkup();
-    hideLoadMoreBtn();
   };
 };
 
@@ -92,15 +87,19 @@ function deleteOrSelectSearchItem(e) {
     handleAxiosGet(itemToSearch, page);
     refs.searchHistoryContainer.classList.remove('is-visible');
     refs.searchHistoryContainer.classList.add('is-hidden');
-    hideLoadMoreBtn();
   };
 };
 
 function hideSearchHistory(e) {
+  console.log(e.currentTarget);
   const clearHistoryBtn = document.querySelector('.clear-history__btn');
-  if (!refs.searchHistoryContainer.contains(e.target) && e.target !== refs.input) {
+  if (!refs.searchHistoryContainer.contains(e.target) && e.target !== refs.input && e.currentTarget !== clearHistoryBtn) {
     refs.searchHistoryContainer.classList.remove('is-visible');
     refs.searchHistoryContainer.classList.add('is-hidden');
+    // } else if (refs.searchHistoryContainer.contains(e.target) && e.target !== clearHistoryBtn) {
+    //   refs.searchHistoryContainer.classList.remove('is-hidden');
+    //   refs.searchHistoryContainer.classList.add('is-visible');
+    // };
   };
 };
 
@@ -135,7 +134,6 @@ function handleSubmit(e) {
   hideSearchHistory(e);
   refs.searchBtn.disabled = true;
   refs.input.blur();
-  hideLoadMoreBtn();
 };
 
 function handleInput(e) {
@@ -144,7 +142,6 @@ function handleInput(e) {
   if (currentSearchQuery === previousSearchQuery || userInput.trim() === '') {
     refs.searchBtn.disabled = true;
     refs.photoCardContainer.innerHTML = '';
-    hideLoadMoreBtn();
   } else {
     previousSearchQuery = currentSearchQuery;
     refs.searchBtn.disabled = false;
@@ -167,52 +164,43 @@ function createImageCardMarkup(images) {
   }).join('');
 };
 
-function showLoadMoreBtn() {
-  refs.loadMoreBtn.classList.remove('no.display');
-  refs.loadMoreBtn.classList.add('load-more');
-};
-
-function hideLoadMoreBtn() {
-  refs.loadMoreBtn.classList.remove('load-more');
-  refs.loadMoreBtn.classList.add('no.display');
-};
-
-function handleLoadMoreBtnClick() {
+function loadMoreImages() {
   newLightBox.refresh();
   page++;
-  handleAxiosGet(searchHistory[searchHistory.length - 1], page);
-  smoothScrollOnGalleryLoad();
+  handleAxiosGet(searchHistory.at(-1), page);
 };
 
-function smoothScrollOnGalleryLoad() {
-  const { height: cardHeight } = document
-    .querySelector(".gallery")
-    .firstElementChild.getBoundingClientRect();
-
-  window.scrollBy({
-    top: 50,
-    behavior: "smooth",
-  });
+function infiniteImageScroll() {
+  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+    loadMoreImages();
+  };
 };
+
+// function smoothScrollOnGalleryLoad() {
+//   window.scrollBy({
+//     top: 1,
+//     behavior: "smooth",
+//   });
+// };
 
 function scrollToTop() {
   if (document.body.scrollTop > 2000 || document.documentElement.scrollTop > 2000) {
     refs.scrollToTopBtn.style.display = "block";
   } else {
     refs.scrollToTopBtn.style.display = "none";
-  }
-}
+  };
+};
 
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
-}
+};
 
 window.onscroll = function () { scrollToTop() };
 createSearchHistoryMarkup();
 
+window.addEventListener('scroll', infiniteImageScroll);
 refs.scrollToTopBtn.addEventListener('click', topFunction);
-refs.loadMoreBtn.addEventListener('click', handleLoadMoreBtnClick);
 refs.body.addEventListener('mousedown', hideSearchHistory);
 refs.input.addEventListener('blur', hideSearchHistory);
 refs.clearHistoryBtn.addEventListener('click', clearSearchHistory);
