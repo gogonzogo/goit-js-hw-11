@@ -1,6 +1,6 @@
 import { getPixabayImages } from "./js/pixabay-get";
 import { Notify } from "notiflix";
-import simpleLightbox from "simplelightbox";
+import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
 const refs = {
@@ -29,12 +29,12 @@ function handleAxiosGet(userInput, page) {
       } else if (page === 1) {
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
         refs.photoCardContainer.innerHTML += createImageCardMarkup(data.hits);
-        simpleLightbox = new simpleLightbox('.gallery a').refresh();
+        simpleLightbox = new SimpleLightbox('.gallery a').refresh();
         smoothScroll();
         showLoadMoreBtn();
       } else {
         refs.photoCardContainer.innerHTML += createImageCardMarkup(data.hits);
-        simpleLightbox = new simpleLightbox('.gallery a').refresh();
+        simpleLightbox = new SimpleLightbox('.gallery a').refresh();
         smoothScroll();
         showLoadMoreBtn();
       }
