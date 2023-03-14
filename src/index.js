@@ -21,12 +21,13 @@ refs.searchBtn.disabled = true;
 let previousSearchQuery = refs.input.value;
 let searchHistory = JSON.parse(localStorage.getItem('queries')) || [];
 let page = 1;
+let newLightBox;
 
 function handleAxiosGet(userInput, page) {
   getPixabayImages(userInput, page)
     .then(({ data }) => {
       refs.photoCardContainer.innerHTML += createImageCardMarkup(data.hits);
-      new SimpleLightbox('.gallery a').refresh();
+      newLightBox = new SimpleLightbox('.gallery a');
       const totalPages = Math.ceil(data.totalHits / 40);
       smoothScrollOnGalleryLoad();
       showLoadMoreBtn();
@@ -188,6 +189,7 @@ function hideLoadMoreBtn() {
 };
 
 function handleLoadMoreBtnClick() {
+  newLightBox.refresh();
   page++;
   handleAxiosGet(searchHistory[searchHistory.length - 1], page);
   smoothScrollOnGalleryLoad();
