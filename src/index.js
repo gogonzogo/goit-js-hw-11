@@ -14,7 +14,7 @@ const refs = {
   searchHistoryContainer: document.querySelector('.search-history__container'),
   searchHistoryList: document.querySelector('.search-history__list'),
   clearHistoryBtn: document.querySelector('.clear-history__btn'),
-  goToTopBtn: document.querySelector('.go-to-top__btn'),
+  scrollToTopBtn: document.querySelector("#myBtn"),
 };
 
 refs.searchBtn.disabled = true;
@@ -35,7 +35,7 @@ function handleAxiosGet(userInput, page) {
       } else if (page === 1) {
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
       };
-  
+
       if (page === totalPages) {
         Notify.info(`We're sorry, but you've reached the end of search results.`);
         hideLoadMoreBtn();
@@ -204,29 +204,23 @@ function smoothScroll() {
   });
 };
 
-  // Get the button
-  let mybutton = document.getElementById("myBtn");
-
-  // When the user scrolls down 20px from the top of the document, show the button
-  window.onscroll = function () { scrollFunction() };
-
-  function scrollFunction() {
-    if (document.body.scrollTop > 2000 || document.documentElement.scrollTop > 2000) {
-      mybutton.style.display = "block";
-    } else {
-      mybutton.style.display = "none";
-    }
+function scrollFunction() {
+  if (document.body.scrollTop > 2000 || document.documentElement.scrollTop > 2000) {
+    refs.scrollToTopBtn.style.display = "block";
+  } else {
+    refs.scrollToTopBtn.style.display = "none";
   }
+}
 
-  // When the user clicks on the button, scroll to the top of the document
-  function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  }
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
 
+window.onscroll = function () { scrollFunction() };
 createSearchHistoryMarkup();
 
-mybutton.addEventListener('click', topFunction);
+refs.scrollToTopBtn.addEventListener('click', topFunction);
 refs.loadMoreBtn.addEventListener('click', handleLoadMoreBtnClick);
 refs.body.addEventListener('mousedown', hideSearchHistory);
 refs.input.addEventListener('blur', hideSearchHistory);
