@@ -106,7 +106,7 @@ function showSearchHistory(e) {
 
 function createSearchHistoryMarkup() {
   refs.searchHistoryList.innerHTML = '';
-  for (item of searchHistory) {
+  searchHistory.map(item => {
     const searchItem = document.createElement('li');
     searchItem.classList.add('search-history__item');
     const itemText = document.createElement('p');
@@ -117,7 +117,7 @@ function createSearchHistoryMarkup() {
     searchItem.appendChild(itemText);
     searchItem.appendChild(itemDeleteBtn);
     refs.searchHistoryList.prepend(searchItem);
-  };
+  });
 };
 
 function handleSubmit(e) {
@@ -204,8 +204,6 @@ function smoothScroll() {
   });
 };
 
-
-window.onload = function () {
   // Get the button
   let mybutton = document.getElementById("myBtn");
 
@@ -213,7 +211,7 @@ window.onload = function () {
   window.onscroll = function () { scrollFunction() };
 
   function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    if (document.body.scrollTop > 2000 || document.documentElement.scrollTop > 2000) {
       mybutton.style.display = "block";
     } else {
       mybutton.style.display = "none";
@@ -225,10 +223,10 @@ window.onload = function () {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
-}
 
 createSearchHistoryMarkup();
 
+mybutton.addEventListener('click', topFunction);
 refs.loadMoreBtn.addEventListener('click', handleLoadMoreBtnClick);
 refs.body.addEventListener('mousedown', hideSearchHistory);
 refs.input.addEventListener('blur', hideSearchHistory);
