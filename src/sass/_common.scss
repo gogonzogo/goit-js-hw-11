@@ -1,1 +1,37 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+
+:root {
+  --accent-color: rgb(24, 18, 43);
+  --accent-color-opaque: rgba(24, 18, 43, 0.2);
+  --accent-color-hover: rgb(57, 48, 83);
+  --primary-color: rgb(68, 60, 104);
+  --primary-color-opaque: rgba(68, 60, 104, 0.9);
+  --primary-color-hover: rgb(99, 89, 133);
+  --primary-text-color: rgb(255, 255, 255);
+}
+
+img {
+  max-width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+}
+
+ul {
+  list-style: none;
+}
+
+.no-display {
+  display: none;
+}
+
+.load-more {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+
+
