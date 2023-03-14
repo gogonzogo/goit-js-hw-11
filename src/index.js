@@ -52,8 +52,12 @@ function updateSearchHistory(add, remove) {
     searchHistory.splice(searchHistory.indexOf(remove), 1);
     localStorage.setItem('queries', JSON.stringify(searchHistory));
     createSearchHistoryMarkup();
-  } else if (add !== undefined) {
+  } else if (add !== undefined && searchHistory.includes(add)) {
     searchHistory.splice(searchHistory.indexOf(add), 1);
+    searchHistory.push(add);
+    localStorage.setItem('queries', JSON.stringify(searchHistory));
+    createSearchHistoryMarkup();
+  } else {
     searchHistory.push(add);
     localStorage.setItem('queries', JSON.stringify(searchHistory));
     createSearchHistoryMarkup();
@@ -125,28 +129,13 @@ function handleSubmit(e) {
   e.preventDefault();
   let userInput = e.currentTarget.searchQuery.value;
   refs.photoCardContainer.innerHTML = '';
-  if (userInput.trim() === '') {
-    Notify.failure('The search field must not be empty.');
-    refs.photoCardContainer.innerHTML = '';
-  } else if (!searchHistory.includes(userInput)) {
-    refs.input.value = '';
-    handleAxiosGet(userInput, page);
-    searchHistory.push(userInput);
-    localStorage.setItem('queries', JSON.stringify(searchHistory));
-    createSearchHistoryMarkup();
-    hideSearchHistory(e);
-    refs.searchBtn.disabled = true;
-    refs.input.blur();
-    hideLoadMoreBtn();
-  } else {
-    refs.input.value = '';
-    handleAxiosGet(userInput);
-    updateSearchHistory(userInput, undefined);
-    hideSearchHistory(e);
-    refs.searchBtn.disabled = true;
-    refs.input.blur();
-    hideLoadMoreBtn();
-  };
+  handleAxiosGet(userInput, page);
+  refs.input.value = '';
+  updateSearchHistory(userInput, undefined);
+  hideSearchHistory(e);
+  refs.searchBtn.disabled = true;
+  refs.input.blur();
+  hideLoadMoreBtn();
 };
 
 function handleInput(e) {
