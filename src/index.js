@@ -14,9 +14,18 @@ const refs = {
   searchHistoryContainer: document.querySelector('.search-history__container'),
   searchHistoryList: document.querySelector('.search-history__list'),
   clearHistoryBtn: document.querySelector('.clear-history__btn'),
-  scrollToTopBtn: document.querySelector("#myBtn"),
+  scrollToTopBtn: document.querySelector('.backToTopBtn'),
   loading: document.querySelector('.loading'),
+  lightDarkModeBtn: document.querySelector('.mode-switch__btn'),
+  lightDarkIconContainer: document.querySelector('.mode-icon__container'),
 };
+
+Notify.init({
+  position: 'center-bottom',
+  width: '600px',
+  height: '100px',
+  fontSize: '20px'
+});
 
 refs.searchBtn.disabled = true;
 let previousSearchQuery = refs.input.value;
@@ -27,25 +36,25 @@ let newLightBox;
 
 
 function handleAxiosGet(userInput, perPage, page) {
+  newLightBox = new SimpleLightbox('.gallery a');
   getPixabayImages(userInput, perPage, page)
     .then(({ data }) => {
       let totalPages = Math.ceil(data.totalHits / 40);
       if (page === totalPages) {
         Notify.info(`We're sorry, but you've reached the end of search results.`);
+        refs.loading.classList.remove('show');
         return;
       };
       console.log('test 2');
       const imageGalleryMarkup = createImageCardMarkup(data.hits);
       refs.photoCardContainer.insertAdjacentHTML('beforeend', imageGalleryMarkup);
-      newLightBox = new SimpleLightbox('.gallery a');
       refs.loading.classList.remove('show');
-      // smoothScrollOnGalleryLoad();
       if (data.totalHits === 0) {
         Notify.failure('Sorry, there are no images matching your search query. Please try again.');
       } else if (page === 1) {
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
       };
-      
+
     })
     .catch((error) => {
       console.log(error);
@@ -157,17 +166,17 @@ function handleInput(e) {
 };
 
 function createImageCardMarkup(images) {
-  console.log('test');
+  console.log('Create Images Markup function called');
   return images.map(image => {
-    return `<div class="photo-card col">
+    return `<div class="photo-card">
       <a href="${image.largeImageURL}" data-lightbox="gallery">
       <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
-      <div class="info">
+      <ul class="info">
         <p class="info-item"><b>Likes</b>${image.likes}</p>
         <p class="info-item"><b>Views</b>${image.views}</p>
         <p class="info-item"><b>Comments</b>${image.comments}</p>
         <p class="info-item"><b>Downloads</b>${image.downloads}</p>
-      </div>
+      </ul>
       </a>
     </div>`
   }).join('');
@@ -186,9 +195,9 @@ function infiniteImageScroll(e) {
   const viewportHeight = window.innerHeight;
   const scrollPosition = (totalHeight - viewportHeight) * 0.8;
   if (window.scrollY >= scrollPosition) {
-      refs.loading.classList.add('show');
-      loadMoreImages();
-    };
+    refs.loading.classList.add('show');
+    loadMoreImages();
+  };
 };
 
 function smoothScrollOnGalleryLoad() {
@@ -218,6 +227,14 @@ function scrollToTop() {
 window.onscroll = function () { showScrollToTopBtn() };
 createSearchHistoryMarkup();
 
+function toggleLightDarkMode(e) {
+  refs.body.classList.toggle('dark-mode');
+  const currentRotation = parseInt(getComputedStyle(refs.lightDarkIconContainer)
+    .getPropertyValue('--rotation'));
+  refs.lightDarkIconContainer.style.setProperty('--rotation', currentRotation + 180);
+}
+
+refs.lightDarkModeBtn.addEventListener('click', toggleLightDarkMode);
 window.addEventListener('scroll', debounce(infiniteImageScroll, 500));
 refs.scrollToTopBtn.addEventListener('click', scrollToTop);
 refs.body.addEventListener('mousedown', hideSearchHistory);

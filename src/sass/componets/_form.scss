@@ -1,0 +1,272 @@
+.form-details__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .form-details__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgb(13, 0, 253);
+    width: fit-content;
+    border-radius: 15px;
+    background-color: red;
+    position: absolute; //WHY IS THIS CAUSING SIMPLELIGHTBOX TO NOT WORK INITAILLY?
+    z-index: 2;
+
+    .search-form {
+      border-bottom: 1px solid rgb(13, 0, 253);
+      border-top: none;
+      border-right: none;
+      border-radius: 15px;
+      padding-left: 10px;
+      background-color: rgb(177, 36, 36);
+    }
+
+    input {
+      border: none;
+      outline: none;
+      background: transparent;
+      width: 100px;
+    }
+
+    input::placeholder {
+      font-family: getFontFamily('primary-font');
+      font-size: getFontSize('small-font');
+    }
+  }
+
+  .is-hidden {
+    display: none;
+  }
+
+  .is-visible {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    border-top: none;
+    margin-top: 5px;
+
+    .search-history__list {
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      cursor: default;
+      width: 100%;
+    }
+
+    .search-history__item {
+      margin-bottom: 5px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      font-size: getFontSize('small-font');
+    }
+
+    .search-item__text {
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    .item-delete__btn {
+      border: none;
+      background-color: transparent;
+    }
+
+    .clear-history__btn {
+      padding: 3px;
+      border-radius: 50px;
+      font-family: getFontFamily('primary-font');
+      font-size: getFontSize('small-font');
+      margin-bottom: 5px;
+      width: fit-content;
+    }
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .form-details__section {
+
+    .form-details__container {
+
+      input {
+        width: auto;
+      }
+
+      input::placeholder {
+        font-size: getFontSize('medium-font');
+      }
+    }
+
+
+    .is-visible {
+      width: 150px;
+
+      .search-history__item {
+        font-size: getFontSize('medium-font');
+      }
+
+      .clear-history__btn {
+        font-size: getFontSize('medium-font');
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .form-details__section {
+
+    .form-details__container {
+
+      input {
+        width: auto;
+      }
+
+      input::placeholder {
+        font-size: getFontSize('large-font');
+      }
+    }
+
+
+    .is-visible {
+      width: 150px;
+      font-size: getFontSize('large-font');
+
+      .search-history__item {
+        font-size: getFontSize('large-font');
+      }
+
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .form-details__section {
+
+    .form-details__container {
+
+      input {
+        width: 250px;
+      }
+
+      input::placeholder {
+        font-size: getFontSize('x-large-font');
+      }
+    }
+
+
+    .is-visible {
+      width: 200px;
+      font-size: getFontSize('x-large-font');
+
+      .search-history__item {
+        font-size: getFontSize('x-large-font');
+      }
+
+    }
+  }
+}
+
+
+// .form-details__section {
+//   width: 155px;
+//   margin: 0 auto;
+//   border-style: solid;
+//   border-radius: 25px;
+//     position: relative;
+//         background-color: var(--accent-color);
+
+//   .search-form {
+//     margin: 0 auto;
+//     display: flex;
+//     justify-content: space-between;
+//     background-color: var(--accent-color);
+//     border-style: hidden;
+//     border-radius: 50px;
+
+//   }
+
+//   // style input placeholder text
+
+//   input::placeholder {
+//     color: var(--primary-text-color);
+//   }
+
+//   input {
+//     border-style: hidden;
+//     border-radius: 50px;
+//     outline: none;
+//     background-color: var(--accent-color);
+//     padding-left: 10px;
+//     color: var(--primary-text-color);
+//   }
+
+//   .search {
+//     border-style: hidden;
+//     border-radius: 50px;
+//     font-size: x-small;
+//     padding: 10px;
+//     background-color: var(--accent-color-hover);
+//     color: var(--primary-text-color);
+//   }
+
+
+// }
+
+// .is-hidden {
+//   display: none;
+// }
+
+// .is-visible {
+//   margin: 0 auto;
+//   display: flex;
+//   flex-direction: column;
+//   border-radius: 5px;
+//   border-top: none;
+//   padding: 10px;
+//   z-index: 1;
+//   position: absolute;
+//   background-color: var(--primary-color-opaque);
+
+
+
+
+//   .search-history__list {
+//     padding-left: 0;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+//     cursor: default;
+//   }
+
+//   .search-history__item {
+//     padding: 5px;
+//     border-radius: 5px;
+//     margin-bottom: 5px;
+//     width: 100%;
+//     text-align: left;
+//     display: flex;
+//     justify-content: space-between;
+//   }
+
+//   .search-item__text {
+//     margin-bottom: 0;
+//     cursor: pointer;
+//     color: var(--primary-text-color);
+//   }
+
+//   .item-delete__btn {
+//     border-style: hidden;
+//     border-radius: 100px;
+//   }
+
+//   .clear-history__btn {
+//     padding: 5px;
+//     border-radius: 50px;
+//     cursor: pointer;
+//     background-color: var(--accent-color);
+//     color: var(--primary-text-color);
+//   }
+// }

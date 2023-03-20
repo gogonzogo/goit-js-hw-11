@@ -1,0 +1,77 @@
+@use '../utilities/variables';
+
+.header__contacts-container {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .header__contacts-container {
+    display: flex;
+
+    .header__contacts-list {
+      display: flex;
+      flex-direction: column;
+      margin: 15px 0;
+    }
+
+    .header__contacts-link {
+      font-family: getFontFamily('primary-font');
+      font-weight: getFontWeight('light-font');
+      font-size: getFontSize('medium-font');
+      display: flex;
+      align-items: center;
+      transition: color variables.$transition-time variables.$transition-time-function;
+
+      &:hover,
+      &:focus {
+        color: getColor('primary-color-hover');
+      }
+    }
+
+    .header__contacts-item:not(:last-child) {
+      padding-bottom: 10px;
+    }
+
+    .header__contacts-icon {
+      margin-right: 10px;
+      fill: currentColor;
+    }
+  }
+}
+
+
+@media screen and (min-width: 1200px) {
+  .header__contacts-container {
+    display: flex;
+
+    .header__contacts-list {
+      display: flex;
+      flex-direction: row;
+      margin: 25px 0;
+    }
+
+    .header__contacts-link {
+      font-family: getFontFamily('primary-font');
+      font-weight: getFontWeight('light-font');
+      font-size: getFontSize('x-large-font');
+      display: flex;
+      align-items: center;
+      transition: color variables.$transition-time variables.$transition-time-function;
+
+      &:hover,
+      &:focus {
+        color: getColor('primary-color-hover');
+      }
+    }
+
+    .header__contacts-item:not(:last-child) {
+      margin-right: 20px;
+      padding: 0;
+    }
+
+    .header__contacts-icon {
+      margin-right: 10px;
+      fill: currentColor;
+    }
+  }
+}

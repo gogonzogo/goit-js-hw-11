@@ -1,0 +1,61 @@
+.accent-button-style {
+  padding: 5px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: get-color('accent-color');
+  color: get-color('primary-text-color');
+  font-weight: bolder;
+
+  &:hover,
+  &:focus {
+    background-color: get-color('accent-color-hover');
+  }
+}
+
+.menu-toggle {
+  background: none;
+  fill: getColor('primary-text-color');
+  transition: fill $transition-time $transition-time-function;
+
+  &:hover,
+  &:focus {
+    fill: getColor('accent-color');
+  }
+}
+.mode-switch__btn {
+  background: none;
+  width: 24px;
+  height: 24px;
+  fill: getColor('primary-text-color');
+  transition: fill $transition-time $transition-time-function;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.backToTopBtn {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 50%;
+  transform: translateX(50%);
+  z-index: 10000;
+  @extend .accent-button-style;
+}
+
+.submit-btn {
+  border: 1px solid blue;
+  border-radius: 100px;
+  padding: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .mode-switch__btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .mobile-menu__container {
+    display: none;
+  }
+}

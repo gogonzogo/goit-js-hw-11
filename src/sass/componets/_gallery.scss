@@ -1,0 +1,30 @@
+.gallery {
+  border: 1px solid purple;
+  width: fit-content;
+  margin-top: 40px;
+
+  .gallery__photo-card-container {
+    border: 1px solid cyan;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .photo-card {
+    width: 120px;
+    margin-top: 5px;
+    border: 1px solid green;
+  }
+
+  .info {
+    display: none;
+  }
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+  }
+}

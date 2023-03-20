@@ -1,0 +1,62 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+
+$transition-time: 2000ms;
+$transition-time-function: cubic-bezier(0.4, 0, 0.2, 1);
+$uppercase: text-transform uppercase;
+
+$colors: (
+  'light-background-color': rgb(255, 255, 255),
+  'dark-background-color': rgb(0, 0, 0),
+  'dark-primary-color': rgba(165, 85, 236, 0.336),
+  'primary-color': rgba(180, 131, 222, 0.472),
+  'primary-color-opaque': rgba(165, 85, 236, 0.5),
+  'primary-color-hover': rgb(193, 154, 227),
+  'accent-color': rgb(255, 255, 208),
+  'accent-color-opaque': rgba(255, 255, 208, 0.5),
+  'accent-color-hover': rgb(255, 255, 231),
+  'secondary-text-color': rgb(255, 255, 255),
+  'accent-text-color': rgba(255, 255, 255, 0.746),
+  'primary-text-color': rgb(0, 0, 0),
+  'tertiary-text-color': rgb(117, 117, 117),
+  'white-color': rgb(255, 255, 255),
+);
+
+$font-family: (
+  'primary-font': 'Montserrat',
+  'secondary-font': 'Nunito',
+  'logo-font': 'MuesoModerno',
+);
+
+$font-sizes: (
+  'small-font': 12px,
+  'medium-font': 14px,
+  'large-font': 16px,
+  'x-large-font': 18px,
+  'xx-large-font': 20px,
+  'xxx-large-font': 22px,
+  'xxxx-large-font': 32px,
+);
+
+$font-weights: (
+  'thin-font': 100,
+  'light-font': 300,
+  'regular-font': 400,
+  'medium-font': 600,
+  'bold-font': 700,
+);
+
+@function getColor($key) {
+  @return map-get($colors, $key);
+}
+
+@function getFontFamily($key) {
+  @return map-get($font-family, $key);
+}
+
+@function getFontSize($key) {
+  @return map-get($font-sizes, $key);
+}
+
+@function getFontWeight($key) {
+  @return map-get($font-weights, $key);
+}
