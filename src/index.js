@@ -14,7 +14,7 @@ const refs = {
   searchHistoryContainer: document.querySelector('.search-history__container'),
   searchHistoryList: document.querySelector('.search-history__list'),
   clearHistoryBtn: document.querySelector('.clear-history__btn'),
-  scrollToTopBtn: document.querySelector('.backToTopBtn'),
+  scrollToTopBtn: document.querySelector('.back-to-top__btn'),
   loading: document.querySelector('.loading'),
   lightDarkModeBtn: document.querySelector('.mode-switch__btn'),
   lightDarkIconContainer: document.querySelector('.mode-icon__container'),

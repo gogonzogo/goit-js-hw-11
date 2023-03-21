@@ -46,19 +46,22 @@
   left: 4px;
 }
 
-.backToTopBtn {
+.back-to-top__btn {
   display: none;
   position: fixed;
   bottom: 10px;
   right: 50%;
   transform: translateX(50%);
   z-index: 999;
-  background-color: getColor('primary-color');
+  background-color: getColor('dark-background-color');
+  color: getColor('secondary-text-color');
   padding: 10px;
   border-radius: 50px;
   font-family: getFontFamily('primary-font');
   font-size: getFontSize('large-font');
   font-weight: getFontWeight('bold-font');
+  transition: background-color $transition-time $transition-time-function,
+    color $transition-time $transition-time-function;
 }
 
 .submit-btn {
