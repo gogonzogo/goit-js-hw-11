@@ -36,11 +36,6 @@ a {
 
 button {
   border-style: hidden;
-
-  &:hover,
-  &:focus {
-    transform: scale(1.1);
-  }
 }
 
 body.dark-mode {
@@ -95,5 +90,19 @@ body.dark-mode {
   .clear-history__btn {
     background-color: getColor('dark-theme-secondary-btn-color');
     border: 1px solid getColor('dark-theme-secondary-btn-color');
+  }
+
+  .menu-container {
+    background-color: getColor('dark-background-color');
+  }
+
+  .menu-container.is-open {
+    .mobile-menu__container {
+      background-color: getColor('dark-theme-primary-accent-color-opaque');
+    }
+  }
+
+  .menu-container .menu-toggle {
+    color: getColor('secondary-text-color');
   }
 }

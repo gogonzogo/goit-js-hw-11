@@ -1,3 +1,5 @@
+@use '../utilities/variables';
+
 .accent-button-style {
   padding: 5px 15px;
   border-radius: 15px;
@@ -17,14 +19,28 @@
   background: none;
   fill: getColor('primary-text-color');
   transition: fill $transition-time $transition-time-function;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+}
+
+.menu-container .menu-toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: getColor('primary-text-color');
+  transition: color variables.$transition-time variables.$transition-time-function;
 }
 
 .mode-switch__btn {
+  transform: rotate(180deg);
   background: none;
   width: 24px;
   height: 24px;
   fill: getColor('primary-text-color');
-  transition: fill $transition-time $transition-time-function;
+  transition: all $transition-time $transition-time-function;
   position: fixed;
   bottom: 4px;
   left: 4px;
@@ -38,6 +54,11 @@
   transform: translateX(50%);
   z-index: 10000;
   @extend .accent-button-style;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
 }
 
 .submit-btn {
@@ -46,12 +67,22 @@
   border-radius: 100px;
   padding: 5px;
   transition: background-color $transition-time $transition-time-function,
-      border-color $transition-time $transition-time-function;
+    border-color $transition-time $transition-time-function;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
 }
 
 .item-delete__btn {
   border: none;
   background-color: transparent;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
 }
 
 .clear-history__btn {
@@ -65,6 +96,11 @@
   width: fit-content;
   transition: background-color $transition-time $transition-time-function,
     border-color $transition-time $transition-time-function;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
 }
 
 @media screen and (min-width: 480px) {

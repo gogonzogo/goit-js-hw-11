@@ -6,61 +6,52 @@
         clip-rule="evenodd"></path>
     </svg>
   </button>
-      <div class="header__contacts-container">
-        <ul class="header__contacts-list">
-          <li class="header__contacts-item">
-            <a href="mailto:jose.gonzales08@ymail.com" class="header__contacts-link">
-              <svg class="header__contacts-icon" width="24" height="24">
-                <use href="./images/sprite.svg#icon-mail"></use>
-              </svg>
-              jose.gonzales08@ymail.com
-            </a>
-          </li>
-          <li class="header__contacts-item">
-            <a href="tel:+16613338523" class="header__contacts-link">
-              <svg class="header__contacts-icon" width="24" height="24">
-                <use href="./images/sprite.svg#icon-phone"></use>
-              </svg>
-              +16613338523
-            </a>
-          </li>
-          <li class="header__contacts-item location-item">
-            <a class="header__contacts-link" href="https://goo.gl/maps/MzCRM3Vw7V64moeA9" target="_blank">
-              <svg class="header__contacts-icon" width="24" height="24">
-                <use href="./images/sprite.svg#icon-location"></use>
-              </svg>
-              Raleigh, NC, USA
-            </a>
-          </li>
-        </ul>
-      </div>
-  <div class="header__social-container">
-    <ul class="header__social-list">
-      <li class="header__social-list-item">
-        <a href="https://github.com/gogonzogo" target="_blank" class="header__social-list-item-link">
-          <svg class="social-icon">
-            <use href="./images/sprite.svg#icon-github"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="header__social-list-item">
-        <a href="https://www.linkedin.com/in/jose-gonzales/" target="_blank" class="header__social-list-item-link">
-          <svg class="social-icon">
-            <use href="./images/sprite.svg#icon-linkedin"></use>
-          </svg>
-        </a>
-      </li>
-    </ul>
-  </div>
   <div class="mobile-menu__container">
-    <button class="menu-toggle js-open-menu" aria-expanded="false" aria-controls="mobile-menu">
-      <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd"
-          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-          clip-rule="evenodd"></path>
-      </svg>
-    </button>
+    <div class="mobile-mobile-contacts__list__container">
+      <ul class="mobile-menu mobile-contacts__list">
+        <li class="mobile-menu-contacts__link">
+          <a href="mailto:jose.gonzales08@ymail.com" class="link mobile-nav__link">
+            <svg class="mobile-email-icon" width="24" height="24">
+              <use href="./images/sprite.svg#icon-mail"></use>
+            </svg>
+            jose.gonzales08@ymail.com
+          </a>
+        </li>
+        <li class="mobile-menu-contacts__link">
+          <a href="tel:+16613338523" class="link mobile-nav__link">
+            <svg class="mobile-menu-contacts__icon" width="24" height="24">
+              <use href="./images/sprite.svg#icon-phone"></use>
+            </svg>
+            +16613338523
+          </a>
+        </li>
+        <li class="location-item mobile-menu-contacts__link">
+          <a class="link mobile-nav__link" href="https://goo.gl/maps/MzCRM3Vw7V64moeA9" target="_blank">
+            <svg class="mobile-menu-contacts__icon" width="24" height="24">
+              <use href="./images/sprite.svg#icon-location"></use>
+            </svg>
+            Raleigh, NC, USA
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="mobile-menu__social-container">
+      <ul class="social-list">
+        <li class="social-list__link">
+          <a href="https://github.com/gogonzogo" target="_blank">
+            <svg class="mobile-social-icon">
+              <use href="./images/sprite.svg#icon-github"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="social-list__link">
+          <a href="https://www.linkedin.com/in/jose-gonzales/" target="_blank">
+            <svg class="mobile-social-icon">
+              <use href="./images/sprite.svg#icon-linkedin"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
-  </div>
-  <script defer src="./js/mobile-menu.js"></script>
-</div>
+  <script defer src="./js/mobile-menu.js" type="module"></script>

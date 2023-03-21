@@ -226,13 +226,16 @@ function scrollToTop() {
 
 window.onscroll = function () { showScrollToTopBtn() };
 createSearchHistoryMarkup();
-
+let rot = 360;
 function toggleLightDarkMode(e) {
   refs.body.classList.toggle('dark-mode');
   const currentRotation = parseInt(getComputedStyle(refs.lightDarkIconContainer)
     .getPropertyValue('--rotation'));
   refs.lightDarkIconContainer.style.setProperty('--rotation', currentRotation + 180);
-}
+  console.log(e.currentTarget);
+  e.currentTarget.style = 'transform: rotate(' + rot + 'deg)';
+  rot += 180;
+};
 
 refs.lightDarkModeBtn.addEventListener('click', toggleLightDarkMode);
 window.addEventListener('scroll', debounce(infiniteImageScroll, 500));
