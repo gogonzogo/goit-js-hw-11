@@ -4,6 +4,10 @@
   display: none;
 }
 
+.location-item {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   .header__contacts-container {
     display: flex;
@@ -48,6 +52,10 @@
       display: flex;
       flex-direction: row;
       margin: 25px 0;
+    }
+
+    .location-item {
+      display: flex;
     }
 
     .header__contacts-link {

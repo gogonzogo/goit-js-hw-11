@@ -1,10 +1,10 @@
+@use '../utilities/variables';
+
 .gallery {
-  border: 1px solid purple;
   width: fit-content;
   margin-top: 40px;
 
   .gallery__photo-card-container {
-    border: 1px solid cyan;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -14,17 +14,64 @@
   .photo-card {
     width: 120px;
     margin-top: 5px;
-    border: 1px solid green;
+    border: 2px solid getColor('primary-accent-color');
+    border-radius: 0 0 8px 8px;
+    background-color: getColor('primary-accent-color');
+    padding-bottom: 3px;
+    transition: background-color $transition-time $transition-time-function,
+    border-color $transition-time $transition-time-function;
   }
 
   .info {
-    display: none;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 0;
+    margin-top: 3px;
   }
 
   .info-item {
+    font-family: getFontFamily('secondary-font');
+    font-size: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 12px;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .gallery {
+
+    .photo-card {
+      width: 200px;
+    }
+
+    .info-item {
+      font-size: 9px;
+      margin-right: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .gallery {
+
+    .photo-card {
+      width: 250px;
+    }
+
+    .info-item {
+      font-size: getFontSize('small-font');
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .gallery {
+    margin-top: 50px;
+
+    .gallery__photo-card-container {
+      gap: 20px;
+    }
   }
 }

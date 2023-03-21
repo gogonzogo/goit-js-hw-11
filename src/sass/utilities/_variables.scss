@@ -5,20 +5,25 @@ $transition-time-function: cubic-bezier(0.4, 0, 0.2, 1);
 $uppercase: text-transform uppercase;
 
 $colors: (
-  'light-background-color': rgb(255, 255, 255),
+  'light-background-color': rgb(238, 233, 218),
   'dark-background-color': rgb(0, 0, 0),
-  'dark-primary-color': rgba(165, 85, 236, 0.336),
-  'primary-color': rgba(180, 131, 222, 0.472),
-  'primary-color-opaque': rgba(165, 85, 236, 0.5),
-  'primary-color-hover': rgb(193, 154, 227),
-  'accent-color': rgb(255, 255, 208),
-  'accent-color-opaque': rgba(255, 255, 208, 0.5),
-  'accent-color-hover': rgb(255, 255, 231),
-  'secondary-text-color': rgb(255, 255, 255),
+  'dark-primary-color': rgb(96, 150, 180),
+  'primary-color': rgb(147, 191, 207),
+  'primary-accent-color': rgb(189, 205, 214),
+  'primary-accent-color-opaque': rgba(189, 205, 214, 0.6),
+  'ternary-color': rgb(238, 233, 218),
+  'secondary-btn-color': rgba(124, 171, 197, 0.6),
+  'secondary-text-color': rgb(190, 190, 190),
   'accent-text-color': rgba(255, 255, 255, 0.746),
   'primary-text-color': rgb(0, 0, 0),
   'tertiary-text-color': rgb(117, 117, 117),
   'white-color': rgb(255, 255, 255),
+  'dark-theme-secondary-text-color': rgb(235, 235, 235),
+  'dark-theme-primary-color': rgb(109, 163, 183),
+  'dark-theme-primary-accent-color': rgb(148, 171, 184),
+  'dark-theme-primary-accent-color-opaque': rgba(141, 163, 175, 0.6),
+  'dark-theme-ternary-color': rgb(198, 191, 170),
+  'dark-theme-secondary-btn-color': rgb(66, 106, 128),
 );
 
 $font-family: (

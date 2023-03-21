@@ -1,5 +1,7 @@
 .header__social-container {
   display: none;
+
+
 }
 
 @media screen and (min-width: 768px) {
@@ -7,16 +9,14 @@
     display: flex;
   }
 
-  .header__social-container {
-    display: flex;
-  }
-
   .header__social-list {
     display: flex;
-    gap: 25px;
+    gap: 40px;
     margin-bottom: 0;
 
     .social-icon {
+      width: 25px;
+      height: 25px;
       fill: currentColor;
       transition: fill $transition-time $transition-time-function;
     }
@@ -30,15 +30,15 @@
 
   .header__social-list {
     display: flex;
-    gap: 20px;
+    gap: 60px;
     margin-bottom: 0;
 
     .social-icon {
       display: flex;
       fill: getColor('primary-text-color');
       transition: fill $transition-time $transition-time-function;
-      width: 30px;
-      height: 30px;
+      width: 35px;
+      height: 35px;
     }
   }
 }
