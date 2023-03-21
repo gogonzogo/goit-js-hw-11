@@ -10,6 +10,12 @@
     border-radius variables.$transition-time variables.$transition-time-function;
 }
 
+@media screen and (min-width: 768px) {
+  .mobile-menu__container {
+    display: none;
+  }
+}
+
 .menu .link:hover,
 .menu .link:focus {
   text-decoration: underline;
