@@ -612,6 +612,7 @@ body.dark-mode .menu-container .menu-toggle {
   transform-origin: 0 0;
   font-family: "Montserrat";
   font-size: 12px;
+  transition: color 2000ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .light-dark-theme__container .mode-icon__container {
   --rotation: 0;

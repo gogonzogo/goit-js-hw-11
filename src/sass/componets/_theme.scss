@@ -16,6 +16,7 @@
     transform-origin: 0 0;
     font-family: getFontFamily('primary-font');
     font-size: getFontSize('small-font');
+    transition: color $transition-time $transition-time-function;
   }
 
   .mode-icon__container {
