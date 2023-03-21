@@ -1,7 +1,14 @@
 .header__social-container {
   display: none;
 
+  .social-icon {
+    transition: fill $transition-time $transition-time-function;
 
+    &:hover,
+    &:focus {
+      transform: scale(1.1);
+    }
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -18,7 +25,6 @@
       width: 25px;
       height: 25px;
       fill: currentColor;
-      transition: fill $transition-time $transition-time-function;
     }
   }
 }
@@ -36,7 +42,6 @@
     .social-icon {
       display: flex;
       fill: getColor('primary-text-color');
-      transition: fill $transition-time $transition-time-function;
       width: 35px;
       height: 35px;
     }

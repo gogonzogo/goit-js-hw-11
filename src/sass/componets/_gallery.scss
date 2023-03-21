@@ -15,11 +15,16 @@
     width: 120px;
     margin-top: 5px;
     border: 2px solid getColor('primary-accent-color');
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 15px 15px;
     background-color: getColor('primary-accent-color');
     padding-bottom: 3px;
     transition: background-color $transition-time $transition-time-function,
-    border-color $transition-time $transition-time-function;
+      border-color $transition-time $transition-time-function;
+
+    &:hover,
+    &:focus {
+      transform: scale(1.1);
+    }
   }
 
   .info {

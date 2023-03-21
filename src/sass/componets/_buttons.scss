@@ -17,11 +17,6 @@
   background: none;
   fill: getColor('primary-text-color');
   transition: fill $transition-time $transition-time-function;
-
-  &:hover,
-  &:focus {
-    fill: getColor('accent-color');
-  }
 }
 
 .mode-switch__btn {

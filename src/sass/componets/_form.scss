@@ -10,21 +10,18 @@
     flex-direction: column;
     align-items: center;
     width: fit-content;
-    border-radius: 15px;
+    border-radius: 20px;
     background-color: getColor('primary-accent-color-opaque');
     position: absolute; //WHY IS THIS CAUSING SIMPLELIGHTBOX TO NOT WORK INITAILLY?
     z-index: 2;
     transition: background-color $transition-time $transition-time-function;
 
     .search-form {
-      border-top: none;
-      border-right: none;
-      border-bottom: 1px solid getColor('primary-accent-color');
-      border-radius: 15px;
+      border-radius: 30px;
       padding-left: 10px;
       background-color: getColor('primary-accent-color');
-      transition: background-color $transition-time $transition-time-function,
-       border-color $transition-time $transition-time-function;;
+      transition: background-color $transition-time $transition-time-function;
+      box-shadow: 0 4px 6px -6px #222;
     }
 
     input {
@@ -73,6 +70,11 @@
     .search-item__text {
       margin-bottom: 0;
       cursor: pointer;
+
+      &:hover,
+      &:focus {
+        transform: scale(1.1);
+      }
     }
   }
 }
@@ -93,9 +95,9 @@
       width: 150px;
     }
 
-        .search-history__item {
-          font-size: getFontSize('medium-font');
-        }
+    .search-history__item {
+      font-size: getFontSize('medium-font');
+    }
   }
 }
 
@@ -116,8 +118,8 @@
       font-size: getFontSize('large-font');
 
       .search-history__item {
-          font-size: getFontSize('large-font');
-        }
+        font-size: getFontSize('large-font');
+      }
     }
   }
 }
@@ -125,6 +127,7 @@
 @media screen and (min-width: 1200px) {
   .form-details__section {
     .form-details__container {
+
       input {
         width: 250px;
       }
@@ -139,8 +142,8 @@
       font-size: getFontSize('x-large-font');
 
       .search-history__item {
-          font-size: getFontSize('x-large-font');
-        }
+        font-size: getFontSize('x-large-font');
+      }
     }
 
 

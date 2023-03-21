@@ -34,6 +34,9 @@ a {
   text-decoration: none;
   color: inherit;
 }
+a:hover, a:focus {
+  transform: scale(1.1);
+}
 
 button {
   border-style: hidden;
@@ -64,7 +67,6 @@ body.dark-mode .form-details__container .form-details__container {
   background-color: rgba(141, 163, 175, 0.6);
 }
 body.dark-mode .form-details__container .search-form {
-  border-bottom: 1px solid rgb(148, 171, 184);
   background-color: rgb(148, 171, 184);
 }
 body.dark-mode .form-details__container input {
@@ -72,7 +74,7 @@ body.dark-mode .form-details__container input {
 }
 body.dark-mode .submit-btn {
   background-color: rgb(66, 106, 128);
-  border: 1px solid rgb(66, 106, 128);
+  border: 2px solid rgb(66, 106, 128);
 }
 body.dark-mode .gallery .photo-card {
   border: 2px solid rgb(148, 171, 184);
@@ -101,6 +103,7 @@ body.dark-mode .clear-history__btn {
   fill: rgb(0, 0, 0);
   transition: fill 2000ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .mode-switch__btn {
   background: none;
   width: 24px;
@@ -241,20 +244,18 @@ body.dark-mode .clear-history__btn {
   flex-direction: column;
   align-items: center;
   width: fit-content;
-  border-radius: 15px;
+  border-radius: 20px;
   background-color: rgba(189, 205, 214, 0.6);
   position: absolute;
   z-index: 2;
   transition: background-color 2000ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .form-details__section .form-details__container .search-form {
-  border-top: none;
-  border-right: none;
-  border-bottom: 1px solid rgb(189, 205, 214);
-  border-radius: 15px;
+  border-radius: 30px;
   padding-left: 10px;
   background-color: rgb(189, 205, 214);
-  transition: background-color 2000ms cubic-bezier(0.4, 0, 0.2, 1), border-color 2000ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 2000ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -6px #222;
 }
 .form-details__section .form-details__container input {
   border: none;
@@ -296,6 +297,9 @@ body.dark-mode .clear-history__btn {
 .form-details__section .is-visible .search-item__text {
   margin-bottom: 0;
   cursor: pointer;
+}
+.form-details__section .is-visible .search-item__text:hover, .form-details__section .is-visible .search-item__text:focus {
+  transform: scale(1.1);
 }
 
 @media screen and (min-width: 480px) {
@@ -356,10 +360,13 @@ body.dark-mode .clear-history__btn {
   width: 120px;
   margin-top: 5px;
   border: 2px solid rgb(189, 205, 214);
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 15px 15px;
   background-color: rgb(189, 205, 214);
   padding-bottom: 3px;
   transition: background-color 2000ms cubic-bezier(0.4, 0, 0.2, 1), border-color 2000ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gallery .photo-card:hover, .gallery .photo-card:focus {
+  transform: scale(1.1);
 }
 .gallery .info {
   display: flex;
@@ -473,6 +480,12 @@ body.dark-mode .clear-history__btn {
 .header__social-container {
   display: none;
 }
+.header__social-container .social-icon {
+  transition: fill 2000ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.header__social-container .social-icon:hover, .header__social-container .social-icon:focus {
+  transform: scale(1.1);
+}
 
 @media screen and (min-width: 768px) {
   .header__social-container {
@@ -487,7 +500,6 @@ body.dark-mode .clear-history__btn {
     width: 25px;
     height: 25px;
     fill: currentColor;
-    transition: fill 2000ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 @media screen and (min-width: 1200px) {
@@ -502,7 +514,6 @@ body.dark-mode .clear-history__btn {
   .header__social-list .social-icon {
     display: flex;
     fill: rgb(0, 0, 0);
-    transition: fill 2000ms cubic-bezier(0.4, 0, 0.2, 1);
     width: 35px;
     height: 35px;
   }
