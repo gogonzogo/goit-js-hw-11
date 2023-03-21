@@ -35,6 +35,7 @@
     input::placeholder {
       font-family: getFontFamily('primary-font');
       font-size: getFontSize('small-font');
+      color: getColor('tertiary-text-color');
     }
   }
 

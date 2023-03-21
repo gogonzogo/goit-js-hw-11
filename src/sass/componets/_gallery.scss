@@ -2,7 +2,7 @@
 
 .gallery {
   width: fit-content;
-  margin-top: 40px;
+  margin-top: 35px;
 
   .gallery__photo-card-container {
     display: flex;
@@ -60,6 +60,7 @@
 
 @media screen and (min-width: 768px) {
   .gallery {
+    margin-top: 40px;
 
     .photo-card {
       width: 250px;
