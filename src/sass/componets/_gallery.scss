@@ -3,23 +3,26 @@
 .gallery {
   width: fit-content;
   margin-top: 35px;
+  overflow: hidden;
 
-  .gallery__photo-card-container {
+  .gallery__image-card-container {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 5px;
   }
 
-  .photo-card {
+  .image-card {
     width: 120px;
     margin-top: 5px;
     border: 2px solid getColor('primary-accent-color');
     border-radius: 0 0 15px 15px;
     background-color: getColor('primary-accent-color');
     padding-bottom: 3px;
-    transition: background-color $transition-time $transition-time-function,
-      border-color $transition-time $transition-time-function;
+    transition: all 1s ease-in-out;
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(+100%);
 
     &:hover,
     &:focus {
@@ -47,7 +50,7 @@
 @media screen and (min-width: 480px) {
   .gallery {
 
-    .photo-card {
+    .image-card {
       width: 200px;
     }
 
@@ -62,7 +65,7 @@
   .gallery {
     margin-top: 40px;
 
-    .photo-card {
+    .image-card {
       width: 250px;
     }
 
@@ -76,7 +79,7 @@
   .gallery {
     margin-top: 50px;
 
-    .gallery__photo-card-container {
+    .gallery__image-card-container {
       gap: 20px;
     }
   }

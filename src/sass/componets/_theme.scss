@@ -11,7 +11,7 @@
   .light-dark-theme-btn__title {
     position: fixed;
     left: 8px;
-    bottom: -2px;
+    bottom:23px;
     transform: rotate(270deg);
     transform-origin: 0 0;
     font-family: getFontFamily('primary-font');
@@ -64,7 +64,7 @@
 
     .light-dark-theme-btn__title {
       left: 11px;
-      bottom: 5px;
+      bottom: 30px;
       font-size: getFontSize('large-font');
     }
   }
