@@ -1,4 +1,4 @@
-import { getPixabayImages } from "./js/pixabay-get";
+import { handlePixabayGet } from "./js/pixabay-get";
 import { Notify } from "notiflix";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
@@ -22,7 +22,7 @@ const refs = {
 
 Notify.init({
   position: 'center-bottom',
-  width: '600px',
+  width: '400px',
   height: '100px',
   fontSize: '20px'
 });
@@ -33,28 +33,23 @@ let searchHistory = JSON.parse(localStorage.getItem('queries')) || [];
 let page = 1;
 let perPage = 40;
 let newLightBox;
+let rot = 360;
 
-
-function handleAxiosGet(userInput, perPage, page) {
-  newLightBox = new SimpleLightbox('.gallery a');
-  getPixabayImages(userInput, perPage, page)
+function getImages(userInput, perPage, page) {
+  handlePixabayGet(userInput, perPage, page)
     .then(({ data }) => {
       let totalPages = Math.ceil(data.totalHits / 40);
+      renderMarkup(data);
       if (page === totalPages) {
         Notify.info(`We're sorry, but you've reached the end of search results.`);
-        refs.loading.classList.remove('show');
         return;
-      };
-      console.log('test 2');
-      const imageGalleryMarkup = createImageCardMarkup(data.hits);
-      refs.photoCardContainer.insertAdjacentHTML('beforeend', imageGalleryMarkup);
-      refs.loading.classList.remove('show');
-      if (data.totalHits === 0) {
+      } else if (data.totalHits === 0) {
         Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+        
       } else if (page === 1) {
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
+        return;
       };
-
     })
     .catch((error) => {
       console.log(error);
@@ -101,22 +96,17 @@ function deleteOrSelectSearchItem(e) {
     updateSearchHistory(itemToSearch, undefined);
     refs.searchBtn.disabled = true;
     refs.photoCardContainer.innerHTML = '';
-    handleAxiosGet(itemToSearch, perPage, page);
+    getImages(itemToSearch, perPage, page);
     refs.searchHistoryContainer.classList.remove('is-visible');
     refs.searchHistoryContainer.classList.add('is-hidden');
   };
 };
 
 function hideSearchHistory(e) {
-  // console.log(e.currentTarget);
   const clearHistoryBtn = document.querySelector('.clear-history__btn');
   if (!refs.searchHistoryContainer.contains(e.target) && e.target !== refs.input && e.currentTarget !== clearHistoryBtn) {
     refs.searchHistoryContainer.classList.remove('is-visible');
     refs.searchHistoryContainer.classList.add('is-hidden');
-    // } else if (refs.searchHistoryContainer.contains(e.target) && e.target !== clearHistoryBtn) {
-    //   refs.searchHistoryContainer.classList.remove('is-hidden');
-    //   refs.searchHistoryContainer.classList.add('is-visible');
-    // };
   };
 };
 
@@ -145,7 +135,7 @@ function handleSubmit(e) {
   e.preventDefault();
   let userInput = e.currentTarget.searchQuery.value;
   refs.photoCardContainer.innerHTML = '';
-  handleAxiosGet(userInput, perPage, page);
+  getImages(userInput, perPage, page);
   refs.input.value = '';
   updateSearchHistory(userInput, undefined);
   hideSearchHistory(e);
@@ -165,8 +155,15 @@ function handleInput(e) {
   };
 };
 
+function renderMarkup(data) {
+  console.log('render markup called');
+  const imageGalleryMarkup = createImageCardMarkup(data.hits);
+  refs.photoCardContainer.insertAdjacentHTML('beforeend', imageGalleryMarkup);
+  newLightBox = new SimpleLightbox('.gallery a').refresh();
+  refs.loading.classList.remove('show');
+};
+
 function createImageCardMarkup(images) {
-  console.log('Create Images Markup function called');
   return images.map(image => {
     return `<div class="photo-card">
       <a href="${image.largeImageURL}" data-lightbox="gallery">
@@ -183,17 +180,18 @@ function createImageCardMarkup(images) {
 };
 
 function loadMoreImages() {
+  console.log('Load More Called');
   newLightBox.destroy();
   page++;
   console.log(page);
-  handleAxiosGet(searchHistory.at(-1), perPage, page);
+  getImages(searchHistory.at(-1), perPage, page);
 };
 
 function infiniteImageScroll(e) {
   e.preventDefault();
   const totalHeight = document.body.scrollHeight;
   const viewportHeight = window.innerHeight;
-  const scrollPosition = (totalHeight - viewportHeight) * 0.8;
+  const scrollPosition = (totalHeight - viewportHeight) * 0.5;
   if (window.scrollY >= scrollPosition) {
     refs.loading.classList.add('show');
     loadMoreImages();
@@ -226,7 +224,7 @@ function scrollToTop() {
 
 window.onscroll = function () { showScrollToTopBtn() };
 createSearchHistoryMarkup();
-let rot = 360;
+
 function toggleLightDarkMode(e) {
   refs.body.classList.toggle('dark-mode');
   const currentRotation = parseInt(getComputedStyle(refs.lightDarkIconContainer)
