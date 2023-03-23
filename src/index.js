@@ -41,19 +41,17 @@ refs.imageCardList.forEach((imageCard) => { observer.observe(imageCard); });
 function getImages(userInput, perPage, page) {
   handlePixabayGet(userInput, perPage, page)
     .then(({ data }) => {
+      renderMarkup(data);
       let totalPages = Math.ceil(data.totalHits / 40);
       if (page === totalPages) {
         Notify.info(`We're sorry, but you've reached the end of search results.`);
-        renderMarkup(data);
         return;
       } else if (data.totalHits === 0) {
         Notify.failure('Sorry, there are no images matching your search query. Please try again.');
       } else if (page === 1) {
-        renderMarkup(data);
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
         return;
       } else if (page > 1) {
-        renderMarkup(data);
         return;
       };
     })
@@ -187,11 +185,9 @@ function createImageCardMarkup(images) {
 };
 
 function loadMoreImages() {
-  console.log('load more images called ');
   newLightBox.destroy();
   page++;
   getImages(searchHistory.at(-1), perPage, page);
-  console.log(`${page}`);
 };
 
 function infiniteImageScroll(e) {
