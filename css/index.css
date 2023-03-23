@@ -97,6 +97,7 @@ body.dark-mode .menu-container {
 }
 body.dark-mode .mobile-menu-content__container {
   background-color: rgb(148, 171, 184);
+  box-shadow: rgba(46, 59, 240, 0.4) 0px 8px 24px, rgba(46, 59, 240, 0.3) 0px 16px 56px, rgba(46, 59, 240, 0.2) 0px 24px 80px, rgba(46, 59, 240, 0.1) 0px 48px 160px, rgba(46, 59, 240, 0.05) 0px 96px 320px;
 }
 body.dark-mode .menu-container .menu-toggle {
   color: rgb(190, 190, 190);
@@ -569,6 +570,7 @@ body.dark-mode .footer-section {
   padding: 20px;
   height: fit-content;
   margin: auto 0;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 
 .mobile-contacts__list {
