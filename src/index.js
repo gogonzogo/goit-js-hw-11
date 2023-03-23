@@ -34,6 +34,7 @@ let page = 1;
 let perPage = 40;
 let newLightBox;
 let rot = 360;
+let furthestScrollPosition = 0;
 const observer = new IntersectionObserver(handleIntersection);
 refs.imageCardList.forEach((imageCard) => { observer.observe(imageCard); });
 
@@ -193,21 +194,17 @@ function loadMoreImages() {
   console.log(`${page}`);
 };
 
-let furthestScrollPosition = 0;
-
 function infiniteImageScroll(e) {
   e.preventDefault();
   const totalHeight = document.body.scrollHeight;
   const viewportHeight = window.innerHeight;
   const scrollPosition = (totalHeight - viewportHeight) * 0.7;
-
   let currentScrollPosition = window.scrollY;
 
   if (currentScrollPosition > furthestScrollPosition) {
-    // user has scrolled further down the page than before
     if (currentScrollPosition >= scrollPosition) {
       loadMoreImages();
-    }
+    };
 
     furthestScrollPosition = currentScrollPosition;
   }
