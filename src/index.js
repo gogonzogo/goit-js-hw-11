@@ -37,20 +37,24 @@ let rot = 360;
 const observer = new IntersectionObserver(handleIntersection);
 refs.imageCardList.forEach((imageCard) => { observer.observe(imageCard); });
 
-
 function getImages(userInput, perPage, page) {
+  console.log('getImages called');
+
   handlePixabayGet(userInput, perPage, page)
     .then(({ data }) => {
       let totalPages = Math.ceil(data.totalHits / 40);
-      renderMarkup(data);
       if (page === totalPages) {
         Notify.info(`We're sorry, but you've reached the end of search results.`);
+        newLightBox = new SimpleLightbox('.gallery a').refresh();
         return;
       } else if (data.totalHits === 0) {
         Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-
       } else if (page === 1) {
+        renderMarkup(data);
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
+        return;
+      } else if (page > 1) {
+        renderMarkup(data);
         return;
       };
     })
@@ -159,6 +163,7 @@ function handleInput(e) {
 };
 
 function renderMarkup(data) {
+  console.log('renderMarkup called');
   const imageGalleryMarkup = createImageCardMarkup(data.hits);
   refs.imageCardContainer.insertAdjacentHTML('beforeend', imageGalleryMarkup);
   newLightBox = new SimpleLightbox('.gallery a').refresh();
@@ -182,6 +187,8 @@ function createImageCardMarkup(images) {
 };
 
 function loadMoreImages() {
+  console.log(`loadMoreImages called page${page}}`);
+
   newLightBox.destroy();
   page++;
   getImages(searchHistory.at(-1), perPage, page);
