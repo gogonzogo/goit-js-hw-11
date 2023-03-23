@@ -11,6 +11,7 @@
     align-items: center;
     width: fit-content;
     border-radius: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     background-color: getColor('primary-accent-color-opaque');
     position: absolute; //WHY IS THIS CAUSING SIMPLELIGHTBOX TO NOT WORK INITAILLY?
     z-index: 2;

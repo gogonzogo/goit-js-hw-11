@@ -50,18 +50,28 @@
   display: none;
   position: fixed;
   bottom: 10px;
-  right: 50%;
-  transform: translateX(50%);
+  left: 0;
+  right: 0;
+  width: fit-content;
+  margin: 0 auto;
   z-index: 999;
-  background-color: getColor('dark-background-color');
-  color: getColor('secondary-text-color');
-  padding: 10px;
+  background-color: getColor('primary-accent-color');
+  color: getColor('primary-text-color');
+  padding: 5px;
   border-radius: 50px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
   font-family: getFontFamily('primary-font');
-  font-size: getFontSize('large-font');
+  font-size: getFontSize('medium-font');
   font-weight: getFontWeight('bold-font');
   transition: background-color $transition-time $transition-time-function,
-    color $transition-time $transition-time-function;
+    color $transition-time $transition-time-function,
+    transform 500ms;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+  }
 }
 
 .submit-btn {
@@ -70,7 +80,8 @@
   border-radius: 100px;
   padding: 2px;
   transition: background-color $transition-time $transition-time-function,
-    border-color $transition-time $transition-time-function;
+    border-color $transition-time $transition-time-function,
+    transform 500ms;
 
   &:hover,
   &:focus {
@@ -93,12 +104,13 @@
   border: 1px solid getColor('secondary-btn-color');
   padding: 3px;
   border-radius: 50px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   font-family: getFontFamily('primary-font');
   font-size: getFontSize('small-font');
   margin-bottom: 5px;
   width: fit-content;
   transition: background-color $transition-time $transition-time-function,
-    border-color $transition-time $transition-time-function;
+    border-color $transition-time $transition-time-function, transform 500ms;
 
   &:hover,
   &:focus {
@@ -111,6 +123,11 @@
   .clear-history__btn {
     font-size: getFontSize('medium-font');
   }
+
+  .back-to-top__btn {
+    padding: 8px;
+    font-size: getFontSize('large-font');
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -121,6 +138,11 @@
 
   .submit-btn {
     padding: 5px;
+  }
+
+  .back-to-top__btn {
+    padding: 9px;
+    font-size: getFontSize('x-large-font');
   }
 }
 
@@ -133,5 +155,10 @@
   .clear-history__btn {
     padding: 8px;
     font-size: getFontSize('x-large-font');
+  }
+
+  .back-to-top__btn {
+    padding: 10px;
+    font-size: getFontSize('xx-large-font');
   }
 }
