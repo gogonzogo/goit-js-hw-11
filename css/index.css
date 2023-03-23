@@ -506,6 +506,7 @@ body.dark-mode .footer-section {
   align-items: flex-start;
   cursor: default;
   width: 100%;
+  margin-bottom: 0;
 }
 .form-details__section .is-visible .search-history__item {
   margin-bottom: 5px;
