@@ -45,7 +45,7 @@ function getImages(userInput, perPage, page) {
       let totalPages = Math.ceil(data.totalHits / 40);
       if (page === totalPages) {
         Notify.info(`We're sorry, but you've reached the end of search results.`);
-        newLightBox = new SimpleLightbox('.gallery a').refresh();
+        renderMarkup(data);
         return;
       } else if (data.totalHits === 0) {
         Notify.failure('Sorry, there are no images matching your search query. Please try again.');
