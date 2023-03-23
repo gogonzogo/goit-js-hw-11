@@ -186,20 +186,31 @@ function createImageCardMarkup(images) {
 };
 
 function loadMoreImages() {
+  console.log('load more images called ');
   newLightBox.destroy();
   page++;
   getImages(searchHistory.at(-1), perPage, page);
+  console.log(`${page}`);
 };
+
+let furthestScrollPosition = 0;
 
 function infiniteImageScroll(e) {
   e.preventDefault();
   const totalHeight = document.body.scrollHeight;
   const viewportHeight = window.innerHeight;
-  const scrollPosition = (totalHeight - viewportHeight) * 0.5;
+  const scrollPosition = (totalHeight - viewportHeight) * 0.7;
 
-  if (window.scrollY >= scrollPosition) {
-    loadMoreImages();
-  };
+  let currentScrollPosition = window.scrollY;
+
+  if (currentScrollPosition > furthestScrollPosition) {
+    // user has scrolled further down the page than before
+    if (currentScrollPosition >= scrollPosition) {
+      loadMoreImages();
+    }
+
+    furthestScrollPosition = currentScrollPosition;
+  }
 };
 
 function showScrollToTopBtn() {
