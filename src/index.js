@@ -242,7 +242,6 @@ function toggleLightDarkMode(e) {
   const currentRotation = parseInt(getComputedStyle(refs.lightDarkIconContainer)
     .getPropertyValue('--rotation'));
   refs.lightDarkIconContainer.style.setProperty('--rotation', currentRotation + 180);
-  console.log(e.currentTarget);
   e.currentTarget.style = 'transform: rotate(' + rot + 'deg)';
   rot += 180;
 };
