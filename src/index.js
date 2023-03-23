@@ -38,8 +38,6 @@ const observer = new IntersectionObserver(handleIntersection);
 refs.imageCardList.forEach((imageCard) => { observer.observe(imageCard); });
 
 function getImages(userInput, perPage, page) {
-  console.log('getImages called');
-
   handlePixabayGet(userInput, perPage, page)
     .then(({ data }) => {
       let totalPages = Math.ceil(data.totalHits / 40);
@@ -165,7 +163,6 @@ function handleInput(e) {
 };
 
 function renderMarkup(data) {
-  console.log('renderMarkup called');
   const imageGalleryMarkup = createImageCardMarkup(data.hits);
   refs.imageCardContainer.insertAdjacentHTML('beforeend', imageGalleryMarkup);
   newLightBox = new SimpleLightbox('.gallery a').refresh();
@@ -189,14 +186,9 @@ function createImageCardMarkup(images) {
 };
 
 function loadMoreImages() {
-  console.log(`loadMoreImages called`);
-
-
-
   newLightBox.destroy();
   page++;
   getImages(searchHistory.at(-1), perPage, page);
-  console.log(`page${page}`);
 };
 
 function infiniteImageScroll(e) {
