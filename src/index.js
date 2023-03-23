@@ -98,6 +98,7 @@ function deleteOrSelectSearchItem(e) {
     const itemToDelete = e.target.previousSibling.textContent;
     updateSearchHistory(undefined, itemToDelete);
   } else if (e.target.nodeName === 'P') {
+    page = 1;
     const itemToSearch = e.target.firstChild.textContent;
     refs.input.value = '';
     updateSearchHistory(itemToSearch, undefined);
@@ -140,6 +141,7 @@ function createSearchHistoryMarkup() {
 
 function handleSubmit(e) {
   e.preventDefault();
+  page = 1;
   let userInput = e.currentTarget.searchQuery.value;
   refs.imageCardContainer.innerHTML = '';
   getImages(userInput, perPage, page);
@@ -187,11 +189,14 @@ function createImageCardMarkup(images) {
 };
 
 function loadMoreImages() {
-  console.log(`loadMoreImages called page${page}}`);
+  console.log(`loadMoreImages called`);
+
+
 
   newLightBox.destroy();
   page++;
   getImages(searchHistory.at(-1), perPage, page);
+  console.log(`page${page}`);
 };
 
 function infiniteImageScroll(e) {
@@ -199,6 +204,7 @@ function infiniteImageScroll(e) {
   const totalHeight = document.body.scrollHeight;
   const viewportHeight = window.innerHeight;
   const scrollPosition = (totalHeight - viewportHeight) * 0.5;
+
   if (window.scrollY >= scrollPosition) {
     loadMoreImages();
   };
