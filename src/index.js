@@ -192,19 +192,23 @@ function loadMoreImages() {
 
 function infiniteImageScroll(e) {
   e.preventDefault();
-  const totalHeight = document.body.scrollHeight;
-  const viewportHeight = window.innerHeight;
-  const scrollPosition = (totalHeight - viewportHeight) * 0.7;
+  if (page > 12) {
+    return;
+  } else {
+    const totalHeight = document.body.scrollHeight;
+    const viewportHeight = window.innerHeight;
+    const scrollPosition = (totalHeight - viewportHeight) * 0.7;
 
-  let currentScrollPosition = window.scrollY;
+    let currentScrollPosition = window.scrollY;
 
-  if (currentScrollPosition > lastScrollPosition) {
-    if (currentScrollPosition >= scrollPosition) {
-      loadMoreImages();
+    if (currentScrollPosition > lastScrollPosition) {
+      if (currentScrollPosition >= scrollPosition) {
+        loadMoreImages();
+      }
     }
-  }
 
-  lastScrollPosition = currentScrollPosition;
+    lastScrollPosition = currentScrollPosition;
+  }
 };
 
 function showScrollToTopBtn() {
